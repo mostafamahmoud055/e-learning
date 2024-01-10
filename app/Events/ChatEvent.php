@@ -20,10 +20,9 @@ class ChatEvent implements ShouldBroadcast
     /**
      * Create a new event instance.
      */
-    public function __construct($message,$from)
+    public function __construct($message)
     {
         $this->message = $message;
-        $this->from = Auth::user()->name;
     }
 
     /**
@@ -34,7 +33,14 @@ class ChatEvent implements ShouldBroadcast
     public function broadcastOn(): array
     {
         return [
-            new PrivateChannel('chat'),
+            new Channel('chat'),
+        ];
+    }
+
+    public function broadcastWith(): array
+    {
+        return [
+            'message' => $this->message
         ];
     }
 }

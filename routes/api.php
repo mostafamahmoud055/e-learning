@@ -41,3 +41,4 @@ Route::post('/social-auth', [SocialAuthController::class, 'socialAuth']);
 require_once __dir__.'/profile.php';
 require_once __dir__.'/course.php';
 require_once __dir__.'/student.php';
+require_once __dir__.'/chat.php';
