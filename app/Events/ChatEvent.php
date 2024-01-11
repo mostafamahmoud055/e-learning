@@ -2,6 +2,9 @@
 
 namespace App\Events;
 
+use App\Models\Course;
+use App\Models\User;
+use App\Notifications\Chat;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Queue\SerializesModels;
@@ -23,6 +26,7 @@ class ChatEvent implements ShouldBroadcast
     public function __construct($message)
     {
         $this->message = $message;
+        Course::find(80)->first()->notify(new Chat());
     }
 
     /**

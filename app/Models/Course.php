@@ -8,13 +8,14 @@ use App\Models\Module;
 use App\Models\Student;
 use App\Traits\FilesLink;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Course extends Model
 {
-    use HasFactory, FilesLink, SoftDeletes;
+    use HasFactory, FilesLink, SoftDeletes, Notifiable;
     protected $fillable = [
         'name',
         'subject',

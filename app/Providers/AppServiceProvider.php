@@ -4,6 +4,9 @@ namespace App\Providers;
 
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Notifications\Channels\DatabaseChannel as IlluminateDatabaseChannel;
+use App\Channels\DatabaseChannel;
+use App\DatabaseNotification;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -12,11 +15,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        if (App::environment('production')) {
-            $this->app->bind('path.public', function () {
-                return base_path('public_html');
-            });
-        }
+        $this->app->instance(IlluminateDatabaseChannel::class, new DatabaseChannel());
     }
     
     /**
