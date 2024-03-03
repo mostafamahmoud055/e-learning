@@ -28,6 +28,7 @@ return new class extends Migration
             $table->enum('class',['A','B','C','D','E'])->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('last_active_at')->nullable();
+            $table->boolean('online')->default(0);
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
