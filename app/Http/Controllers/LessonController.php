@@ -45,7 +45,7 @@ class LessonController extends Controller
                 $data['file'][$i] = 'images/' . $path[$i];
             }
         }
-
+        
         $lesson = Lesson::create($data);
         if ($lesson && isset($data['file'])) {
             for ($i = 0; $i < count($request->file); $i++) {

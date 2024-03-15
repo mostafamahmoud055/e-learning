@@ -24,7 +24,7 @@ class LessonObserver
             $minutes -= 60;
             $hours++;
         } else {
-            $minutes = intval($course_time[1]) + intval($lesson_time[1]);
+            $minutes = intval($course_time[1] ?? 0) + intval($lesson_time[1] ?? 0);
         }
         $course->hours = $hours . ":" . $minutes;
         $course->save();
@@ -54,7 +54,7 @@ class LessonObserver
             $minutes -= 60;
             $hours--;
         } else {
-            $minutes = intval($course_time[1]) - intval($lesson_time[1]);
+            $minutes = intval($course_time[1] ?? 0) - intval($lesson_time[1] ?? 0);
         }
         $course->hours = $hours . ":" . abs($minutes);
         $course->save();
