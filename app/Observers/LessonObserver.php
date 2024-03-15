@@ -12,19 +12,19 @@ class LessonObserver
      */
     public function created(Lesson $lesson): void
     {
-        
+
         $course = Course::find($lesson->course_id);
 
         $lesson_time = explode(':', $lesson->hours);
         $course_time = explode(':', $course->hours);
-        
-        $hours = $course_time[0] + $lesson_time[0];
-        if (($course_time[1] + $lesson_time[1]) >= 60) {
-            $minutes = $course_time[1] + $lesson_time[1];
+
+        $hours = intval($course_time[0]) + intval($lesson_time[0]);
+        if ((intval($course_time[1] ?? 0) + intval($lesson_time[1] ?? 0)) >= 60) {
+            $minutes = intval($course_time[1]) + intval($lesson_time[1]);
             $minutes -= 60;
             $hours++;
         } else {
-            $minutes = $course_time[1] + $lesson_time[1];
+            $minutes = intval($course_time[1]) + intval($lesson_time[1]);
         }
         $course->hours = $hours . ":" . $minutes;
         $course->save();
@@ -37,7 +37,7 @@ class LessonObserver
     {
         //
     }
-    
+
     /**
      * Handle the Lesson "deleted" event.
      */
