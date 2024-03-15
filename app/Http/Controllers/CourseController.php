@@ -44,12 +44,12 @@ class CourseController extends Controller
     {
         $allStudent = [];
         $this->authorize('create', Course::class);
-
         $data = $request->except('photo');
         $data['user_id'] = Auth::id();
         if ($path = $this->uploadFile($request, 'resources/' . $request->subject . '/' . $request->name)) {
             $data['image'] = 'images/' . $path;
         }
+        // return($request->all());
         $course = Course::create($data);
         $students =  DB::table('users')
             ->select('id')
